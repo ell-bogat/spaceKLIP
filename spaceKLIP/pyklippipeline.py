@@ -245,7 +245,7 @@ class SpaceTelescope(Data):
             iwa_all = 1.  # pix
 
         # Recenter science images.
-        new_center = (np.array(data.shape[1:])-1)/ 2.
+        new_center = np.array(data.shape[1:])/ 2.
         new_center = new_center[::-1]
         for i, image in enumerate(input_all):
             recentered_image = pyklip.klip.align_and_scale(image, new_center=new_center, old_center=centers_all[i])
@@ -326,7 +326,7 @@ class SpaceTelescope(Data):
         psflib_filenames_all = np.array(psflib_filenames_all)
         
         # Recenter reference images.
-        new_center = (np.array(data.shape[1:])-1)/ 2.
+        new_center = np.array(data.shape[1:])/ 2.
         new_center = new_center[::-1]
         for i, image in enumerate(psflib_data_all):
             recentered_image = pyklip.klip.align_and_scale(image, new_center=new_center, old_center=psflib_centers_all[i])

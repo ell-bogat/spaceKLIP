@@ -1903,18 +1903,13 @@ class ImageTools():
                                     npix=fov_pix)
             
             # Determine relative shift between data and model PSF.
-            pcc_result = phase_cross_correlation(datasub * masksub,
-                                                     model_psf * masksub,
-                                                     upsample_factor=1000,
-                                                     normalization=None,
-                                                     return_error=False)
+            shift, error, phasediff = phase_cross_correlation(datasub * masksub,
+                                                              model_psf * masksub,
+                                                              upsample_factor=1000,
+                                                              normalization=None,
+                                                              return_error=False)
+            yshift, xshift = shift
             
-            # Hotfix for skimage version 0.22.0 returning error even if return_error is False
-            if type(pcc_result) == np.ndarray:
-                yshift, xshift = pcc_result
-            else:
-                yshift, xshift = pcc_result[0] 
-
             # Update star position.
             xc = np.mean(xsub_indarr) + xshift
             yc = np.mean(ysub_indarr) + yshift

@@ -235,9 +235,9 @@ class AnalysisTools():
                     cons_mask = np.array(cons_mask)
                 
                 # Apply COM substrate transmission.
-                cons /= tp_comsubst
-                if mask is not None:
-                    cons_mask /= tp_comsubst
+                # cons /= tp_comsubst
+                # if mask is not None:
+                #     cons_mask /= tp_comsubst
                 
                 # Plot masked data.
                 klmodes = self.database.red[key]['KLMODES'][j].split(',')
@@ -665,7 +665,7 @@ class AnalysisTools():
                         
                         # Apply scale factor to incorporate the COM substrate
                         # transmission.
-                        offsetpsf *= tp_comsubst
+                        # offsetpsf *= tp_comsubst
                         
                         # Blur frames with a Gaussian filter.
                         if not np.isnan(self.database.obs[key]['BLURFWHM'][ww]):
@@ -800,6 +800,7 @@ class AnalysisTools():
                         
                         # MCMC.
                         if fitmethod == 'mcmc':
+                            # fm_frame *= -1
                             fma = fitpsf.FMAstrometry(guess_sep=guess_sep,
                                                       guess_pa=guess_pa,
                                                       fitboxsize=fitboxsize)
