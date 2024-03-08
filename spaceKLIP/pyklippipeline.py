@@ -83,9 +83,6 @@ def run_obs(database,
         kwargs['mode'] = ['ADI+RDI']
     if not isinstance(kwargs['mode'], list):
         kwargs['mode'] = [kwargs['mode']]
-    if 'annuli' not in kwargs.keys():
-        kwargs['annuli'] = [1]
-    """ TODO: Pass specific annuli radius bounds to pyKLIP (requires changes to pyKLIP)
     if 'annuli' not in kwargs.keys() and 'rad_bounds' not in kwargs.keys():
         kwargs['annuli'] = [1]
         kwargs['rad_bounds'] = None
@@ -95,7 +92,6 @@ def run_obs(database,
         kwargs['annuli'] = [len(kwargs['rad_bounds'])]
     else: 
         assert kwargs['annuli'] == [len(kwargs['rad_bounds'])] or kwargs['annuli'] == len(kwargs['rad_bounds']) 
-        """
     if not isinstance(kwargs['annuli'], list):
         kwargs['annuli'] = [kwargs['annuli']]
     if 'subsections' not in kwargs.keys():
